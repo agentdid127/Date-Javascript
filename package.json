@@ -1,0 +1,10 @@
+{
+  "name": "datejs",
+  "version": "0.0.1",
+  "description": "agentdid127's Date system for JavaScript",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "agentdid127",
+  "license": "ISC"
+}

@@ -6,7 +6,7 @@ const DateUtil = {
             var date = dateIn.split(":");
             return new CDate(date[0], date[1], date[2], date[3], date[4], date[5], date[6])
         },
-        reformatDate: function(date = new CDate()) {
+        reformatDate: function(date) {
             const CDate = require("./CDate")
             var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
 

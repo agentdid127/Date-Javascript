@@ -4,7 +4,11 @@
   "description": "agentdid127's Date system for JavaScript",
   "main": "index.js",
   "scripts": {
+    "test": "eslint ./**.js"
   },
   "author": "agentdid127",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.29.0"
+  }
 }

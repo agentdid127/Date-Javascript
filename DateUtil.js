@@ -1,3 +1,4 @@
+const CDate = require("./CDate");
 
 const DateUtil = {
     CDate: {
@@ -6,8 +7,9 @@ const DateUtil = {
             var date = dateIn.split(":");
             return new CDate(date[0], date[1], date[2], date[3], date[4], date[5], date[6])
         },
-        reformatDate: function(date) {
+        reformatDate: function(dateIn) {
             const CDate = require("./CDate")
+            const date = borrow(dateIn);
             var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
 
             var milli_correct = milli / 1000.0;
@@ -56,9 +58,13 @@ const DateUtil = {
 
             if (date.year > 0 && year <= 0) year--;
             else if (date.year < 0 && year >= 0) year++;
+            
+            if (month < 1) {
+                year--
+            }
     
             return new CDate(year, month, day, hour, minute, second, milli);
-    
+            
         },
 
         isLeapYear: function(year) {
@@ -80,6 +86,34 @@ const DateUtil = {
                 return 30;
         }
     }
+}
+
+function borrow(date) {
+    const CDate = require("./CDate")
+    var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
+    while (milli < 0) {
+        second -= 1;
+        milli += 1000;
+    }
+    while (second < 0) {
+        minute -= 1;
+        second += 60;
+        
+    }
+    while (minute < 0) {
+        hour -= 1;
+        minute += 60;
+    }
+    while (hour < 0) {
+        day -= 1;
+        hour += 24;
+    }
+    while (month < 1) {
+        year -= 1;
+        month += 12;
+    }
+
+    return new CDate(year, month, day, hour, minute, second, milli);
 }
 
 module.exports = DateUtil

@@ -67,7 +67,7 @@ class UnixTimestamp {
             }
             month++;
 
-        var year = 1970;
+        var year = 1969;
         
         var month_correct = (month -1) / 12.0;
         month = (month -1) % 24 + 1;

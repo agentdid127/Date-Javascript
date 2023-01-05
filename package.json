@@ -1,6 +1,6 @@
 {
-  "name": "agent-date",
-  "version": "0.0.3",
+  "name": "agentdid127-datejs",
+  "version": "0.0.1",
   "description": "agentdid127's Date system for JavaScript",
   "main": "index.js",
   "scripts": {

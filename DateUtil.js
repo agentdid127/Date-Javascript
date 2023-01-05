@@ -9,7 +9,7 @@ const DateUtil = {
         },
         reformatDate: function(dateIn) {
             const CDate = require("./CDate")
-            const date = borrow(dateIn);
+            const date = DateUtil.CDate.borrow(dateIn);
             var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
 
             var milli_correct = milli / 1000.0;
@@ -66,6 +66,33 @@ const DateUtil = {
             return new CDate(year, month, day, hour, minute, second, milli);
             
         },
+        borrow: function(date) {
+            const CDate = require("./CDate")
+            var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
+            while (milli < 0) {
+                second -= 1;
+                milli += 1000;
+            }
+            while (second < 0) {
+                minute -= 1;
+                second += 60;
+                
+            }
+            while (minute < 0) {
+                hour -= 1;
+                minute += 60;
+            }
+            while (hour < 0) {
+                day -= 1;
+                hour += 24;
+            }
+            while (month < 1) {
+                year -= 1;
+                month += 12;
+            }
+        
+            return new CDate(year, month, day, hour, minute, second, milli);
+        },
 
         isLeapYear: function(year) {
             if (year % 4 != 0) return false;
@@ -86,34 +113,6 @@ const DateUtil = {
                 return 30;
         }
     }
-}
-
-function borrow(date) {
-    const CDate = require("./CDate")
-    var year = date.getYear(), month = date.getMonth(), day = date.getDay(), hour = date.getHour(), minute = date.getMinute(), second = date.getSecond(), milli = date.getMilli();
-    while (milli < 0) {
-        second -= 1;
-        milli += 1000;
-    }
-    while (second < 0) {
-        minute -= 1;
-        second += 60;
-        
-    }
-    while (minute < 0) {
-        hour -= 1;
-        minute += 60;
-    }
-    while (hour < 0) {
-        day -= 1;
-        hour += 24;
-    }
-    while (month < 1) {
-        year -= 1;
-        month += 12;
-    }
-
-    return new CDate(year, month, day, hour, minute, second, milli);
 }
 
 module.exports = DateUtil

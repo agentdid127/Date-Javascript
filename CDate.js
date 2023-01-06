@@ -1,4 +1,4 @@
-const Util = require("./DateUtil")
+const DateUtil = require("./DateUtil")
 class CDate {
     constructor(year = 1970, month = 1, day = 1, hour = 0, minute = 0, second = 0, milli = 0) {
         this.year = parseInt(year);
@@ -11,18 +11,18 @@ class CDate {
     }
 
     isLeapYear() {
-        return Util.CDate.isLeapYear(this.year);
+        return DateUtil.CDate.isLeapYear(this.year);
     }
 
     getDaysInMonth() {
-        return Util.CDate.getDaysInMonth(this.month, this.year);
+        return DateUtil.CDate.getDaysInMonth(this.month, this.year);
     }
 
     formattedSum(date) {
         var yearOut = this.year + date.year;
         if (this.year > 0 && this.year + date.year <= 0) yearOut -= 1;
         else if (this.year < 0 && this.year + date.year >= 0) yearOut += 1;
-        return Util.CDate.reformatDate(new CDate(yearOut, this.month + date.month, this.day + date.day, this.hour + date.hour, this.minute + date.minute, this.second + date.second, this.milli + date.milli));
+        return DateUtil.CDate.reformatDate(new CDate(yearOut, this.month + date.month, this.day + date.day, this.hour + date.hour, this.minute + date.minute, this.second + date.second, this.milli + date.milli));
     }
 
     sum(date) {
@@ -33,7 +33,7 @@ class CDate {
         var yearOut = this.year - date.year;
         if (this.year > 0 && this.year - date.year <= 0) yearOut -= 1;
         else if (this.year < 0 && this.year - date.year >= 0) yearOut += 1;
-        return Util.CDate.reformatDate(new CDate(yearOut, this.month - date.month, this.day - date.day, this.hour - date.hour, this.minute - date.minute, this.second - date.second, this.milli - date.milli));
+        return DateUtil.CDate.reformatDate(new CDate(yearOut, this.month - date.month, this.day - date.day, this.hour - date.hour, this.minute - date.minute, this.second - date.second, this.milli - date.milli));
     }
 
     diff(date) {

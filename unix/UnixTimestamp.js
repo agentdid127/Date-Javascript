@@ -1,7 +1,7 @@
 const UnixFormat = require("./UnixFormat");
 const CDate = require("../CDate");
 const DateFormat = require("../DateFormat");
-const UnixSupportedDate = require("./UnixSupportedDate.js");
+const UnixSupportedDate = require("./UnixSupportedDate");
 const DateUtil = require("../DateUtil");
 const UnixUtils = require("./UnixUtils");
 class UnixTimestamp {

@@ -13,13 +13,11 @@ class UnixTimestamp {
 
     toDate() {
         var milli;
-        if (this.format == UnixFormat[0]) {
-            milli = this.data * 1000;
-        }
-        else if (this.format == UnixFormat[1]) {
-            milli = this.data;
-        }
-
+        if (format.equals(UnixFormat[0])) {
+            milli = data * 1000;
+        } else if (format.equals(UnixFormat[1])) {
+            milli = data;
+        } else return null;
         var second = 0;
         var milli_correct = milli / 1000.0;
         milli = milli % 1000;
@@ -41,7 +39,7 @@ class UnixTimestamp {
         var hour_correct = hour / 24.0;
         hour = hour % 24;
         day += Math.floor(hour_correct);
-        
+
         var month = 0;
         var yCycle = 1;
         var mCycle = 1;
@@ -66,17 +64,16 @@ class UnixTimestamp {
                 if (yCycle < 1) yCycle = 4;
             }
             month++;
-
-        var year = 1969;
-        
-        var month_correct = (month -1) / 12.0;
-        month = (month -1) % 24 + 1;
-        year += Math.floor(month_correct);
+            var year = 1970;
+            var month_correct = (month - 1) / 12.0;
+            month = (month - 1) % 12 + 1;
+            year += Math.floor(month_correct);
 
 
-        if (year % 4 > 0 && year > 1970) day++;
-        if (year % 4 != 1 && year < 1970) day++;
-        if (year <= 0) year--;
+            if (year % 4 > 0 && year > 1970) day++;
+            if (year % 4 != 1 && year < 1970) day++;
+            //if (year < 1970) second--;
+            if (year <= 0) year--;
         
         return UnixUtils.UnixSupportedDate.dateFromString(DateUtil.CDate.reformatDate(new CDate(year, Math.floor(month), Math.floor(day), Math.floor(hour), Math.floor(minute), Math.floor(second), Math.floor(milli))).toString());
     }

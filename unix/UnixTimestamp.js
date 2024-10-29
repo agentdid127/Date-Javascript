@@ -13,10 +13,10 @@ class UnixTimestamp {
 
     toDate() {
         var milli;
-        if (format.equals(UnixFormat[0])) {
-            milli = data * 1000;
-        } else if (format.equals(UnixFormat[1])) {
-            milli = data;
+        if (this.format.equals(UnixFormat[0])) {
+            milli = this.data * 1000;
+        } else if (this.format.equals(UnixFormat[1])) {
+            milli = this.data;
         } else return null;
         var second = 0;
         var milli_correct = milli / 1000.0;
